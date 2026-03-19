@@ -10,13 +10,12 @@ public class PlayerInventory : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-           
-            Debug.Log("Torch placed!");
-            items.Remove("torch");
-            Debug.Log("Updated Inventory" + )
-        }
+        Debug.Log("Inventory: " + string.Join(",", items));
+
+        items.Remove("Torch");
+        Debug.Log("Torch placed!");
+
+        Debug.Log("Updated Inventory" + string.Join(",", items));
     }
 
     // Update is called once per frame
