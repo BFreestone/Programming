@@ -1582,7 +1582,7 @@ Transform:
   m_GameObject: {fileID: 2142794593}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 503.19962, y: 0, z: 502.23624}
+  m_LocalPosition: {x: 503.19962, y: 1, z: 502.23624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1677,16 +1677,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142794593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402fb2fc97e8204409bf3d79488ebfbe, type: 3}
+  m_Script: {fileID: 11500000, guid: a19ca94a1262a3547a29a7f0501f1727, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player.Movement0
+  m_EditorClassIdentifier: Assembly-CSharp::Debugging.Player.Movement5
   moveSpeed: 5
-  walkSpeed: 2
+  walkSpeed: 5
   runSpeed: 10
-  crouchSpeed: 1
+  crouchSpeed: 2
   jumpSpeed: 7
-  isGrounded: 1
-  _moveDir: {x: 0, y: 0, z: 0}
 --- !u!143 &2142794599
 CharacterController:
   m_ObjectHideFlags: 0

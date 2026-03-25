@@ -1,26 +1,20 @@
-﻿
-using UnityEngine;
-
-namespace Player
+﻿using UnityEngine;
+using System;
+namespace Debugging.Player
 {
     [AddComponentMenu("RPG/Player/Movement")]
     [RequireComponent(typeof(CharacterController))]
-    public class Movement0: MonoBehaviour
+    public class Movement3 : MonoBehaviour
     {
+        [SerializeField] CharacterController _charC;
         [Header("Speed Vars")]
         public float moveSpeed;
-        public float walkSpeed, runSpeed, crouchSpeed, jumpSpeed;
+        public float walkSpeed = 5, runSpeed = 10, crouchSpeed = 2.5f, jumpSpeed = 8;
         private float _gravity = 20.0f;
-        private CharacterController _charC;
-        public bool isGrounded = true;
-        public Vector3 _moveDir;
-
+        private Vector3 _moveDir;
         private void Start()
         {
             _charC = GetComponent<CharacterController>();
-            
-            
-
         }
         private void Update()
         {
@@ -43,18 +37,14 @@ namespace Player
                     moveSpeed = walkSpeed;
                 }
                 _moveDir = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * moveSpeed); 
+
                 if (Input.GetButton("Jump"))
                 {
                     _moveDir.y = jumpSpeed;
                 }
             }
-            
-            
-                _moveDir.y -= _gravity * Time.deltaTime;
-                _charC.Move(_moveDir * Time.deltaTime);
-            
-
-
-        }
+            _moveDir.y -= _gravity * Time.deltaTime;
+            _charC.Move(_moveDir * Time.deltaTime);
+        }       
     }
 }

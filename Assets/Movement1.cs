@@ -1,26 +1,22 @@
-﻿
+﻿using System;
 using UnityEngine;
 
-namespace Player
+namespace Debugging.Player
 {
     [AddComponentMenu("RPG/Player/Movement")]
     [RequireComponent(typeof(CharacterController))]
-    public class Movement0: MonoBehaviour
+    public class Movement1 : MonoBehaviour
     {
         [Header("Speed Vars")]
         public float moveSpeed;
         public float walkSpeed, runSpeed, crouchSpeed, jumpSpeed;
         private float _gravity = 20.0f;
-        private CharacterController _charC;
-        public bool isGrounded = true;
-        public Vector3 _moveDir;
+        private Vector3 _moveDir;
+        CharacterController _charC;
 
         private void Start()
         {
             _charC = GetComponent<CharacterController>();
-            
-            
-
         }
         private void Update()
         {
@@ -37,24 +33,26 @@ namespace Player
                 else if (Input.GetButton("Crouch"))
                 {
                     moveSpeed = crouchSpeed;
+                    _charC.height = 1;
+                }
+                else
+                {
+                    moveSpeed = walkSpeed;
+                    _charC.height = 2;
+                }
+                _moveDir = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical") * moveSpeed));
+                if (Input.GetButton("Jump"))
+                {
+                    _moveDir.y = jumpSpeed;
                 }
                 else
                 {
                     moveSpeed = walkSpeed;
                 }
-                _moveDir = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * moveSpeed); 
-                if (Input.GetButton("Jump"))
-                {
-                    _moveDir.y = jumpSpeed;
-                }
             }
-            
-            
-                _moveDir.y -= _gravity * Time.deltaTime;
-                _charC.Move(_moveDir * Time.deltaTime);
-            
-
-
+            _moveDir.y -= _gravity * Time.deltaTime;
+            _charC.Move(_moveDir * Time.deltaTime);
         }
+
     }
 }
