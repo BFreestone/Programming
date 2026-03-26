@@ -34,10 +34,12 @@ namespace Debugging.Player
                 else if (Input.GetButton("Crouch"))
                 {
                     moveSpeed = crouchSpeed;
+                    _charC.height = 1;
                 }
                 else
                 {
                     moveSpeed = walkSpeed;
+                    _charC.height = 2;
                 }
                 _moveDir = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * moveSpeed);
                 if (Input.GetButton("Jump"))

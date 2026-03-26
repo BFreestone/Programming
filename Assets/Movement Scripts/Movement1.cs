@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Debugging.Player
+    
 {
     [AddComponentMenu("RPG/Player/Movement")]
     [RequireComponent(typeof(CharacterController))]
@@ -9,10 +10,10 @@ namespace Debugging.Player
     {
         [Header("Speed Vars")]
         public float moveSpeed;
-        public float walkSpeed, runSpeed, crouchSpeed, jumpSpeed;
+        public float walkSpeed = 5, runSpeed = 10, crouchSpeed = 2.5f, jumpSpeed = 8;
         private float _gravity = 20.0f;
         private Vector3 _moveDir;
-        CharacterController _charC;
+        [SerializeField] private CharacterController _charC;
 
         private void Start()
         {
@@ -40,15 +41,12 @@ namespace Debugging.Player
                     moveSpeed = walkSpeed;
                     _charC.height = 2;
                 }
-                _moveDir = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical") * moveSpeed));
+                _moveDir = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * moveSpeed);
                 if (Input.GetButton("Jump"))
                 {
                     _moveDir.y = jumpSpeed;
                 }
-                else
-                {
-                    moveSpeed = walkSpeed;
-                }
+                
             }
             _moveDir.y -= _gravity * Time.deltaTime;
             _charC.Move(_moveDir * Time.deltaTime);
